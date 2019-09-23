@@ -36,14 +36,14 @@ WORKDIR /tmp/
 RUN git clone --depth 1 --branch ${OPENTTD_VERSION} https://github.com/OpenTTD/OpenTTD.git openttd
 WORKDIR /tmp/openttd/
 RUN mv os/debian .
-RUN debuild -uc -us -b
+RUN nice -n 10 debuild -uc -us -b
 WORKDIR /tmp/
 RUN rm -R openttd/
 
 RUN apt-get build-dep openttd-opengfx -y
 RUN git clone --depth 1 --branch ${OPENGFX_VERSION} https://salsa.debian.org/openttd-team/openttd-opengfx.git
 WORKDIR /tmp/openttd-opengfx/
-RUN debuild -uc -us -b
+RUN nice -n 10 debuild -uc -us -b
 WORKDIR /tmp/
 RUN rm -R openttd-opengfx/
 
@@ -51,17 +51,27 @@ RUN rm /usr/bin/qemu-x86_64-static /usr/bin/qemu-arm-static /usr/bin/qemu-aarch6
 
 FROM ${ARCH}/ubuntu:latest
 
+COPY ./qemu-x86_64-static /usr/bin/qemu-x86_64-static
+COPY ./qemu-arm-static /usr/bin/qemu-arm-static
+COPY ./qemu-aarch64-static /usr/bin/qemu-aarch64-static
+
 WORKDIR /root/
 COPY --from=0 /tmp/openttd*.deb /root/
 RUN rm -f openttd*dbg*.deb
 RUN apt-get update
 RUN apt-get install --no-install-recommends ./openttd*.deb -y
 RUN rm -f openttd*.deb
+RUN apt-get autoremove --yes --purge
+RUN apt-get clean
+RUN rm -Rf /var/lib/apt/lists
+RUN rm -Rf /var/cache/apt
 
 RUN mkdir -p /home/openttd/.openttd
 RUN useradd -M -d /home/openttd -u 911 -U -s /bin/bash openttd
 RUN usermod -G users openttd
 RUN chown openttd:openttd /home/openttd -R
+
+RUN rm /usr/bin/qemu-x86_64-static /usr/bin/qemu-arm-static /usr/bin/qemu-aarch64-static
 
 USER openttd
 WORKDIR /home/openttd
