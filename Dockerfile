@@ -1,5 +1,5 @@
 ARG ARCH
-FROM ${ARCH}/ubuntu:latest AS openttd-builder
+FROM ${ARCH}/ubuntu:latest
 MAINTAINER Xeha <Xeha@i2pmail.org>
 
 ARG ARCH
@@ -49,10 +49,10 @@ RUN rm -R openttd-opengfx/
 
 RUN rm /usr/bin/qemu-x86_64-static /usr/bin/qemu-arm-static /usr/bin/qemu-aarch64-static
 
-FROM ubuntu:latest
+FROM ${ARCH}/ubuntu:latest
 
 WORKDIR /root/
-COPY --from=openttd-builder /tmp/openttd*.deb /root/
+COPY --from=0 /tmp/openttd*.deb /root/
 RUN rm -f openttd*dbg*.deb
 RUN apt-get update
 RUN apt-get install --no-install-recommends ./openttd*.deb -y
