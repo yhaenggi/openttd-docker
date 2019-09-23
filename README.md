@@ -19,9 +19,5 @@ Config files is located under /home/openttd/.openttd. To mount up your .openttd 
 
    -v /path/to/your/.openttd:/home/openttd/.openttd
 
-For example to run server and load my savename game.sav:
-
-    docker run -d --name openttd -p 3979:3979/tcp -p 3979:3979/udp -v /home/<your_username>/.openttd:/home/openttd/.openttd registry.traefik.k8.darkgamex.ch/openttd:latest
-
 ## Other tags ##
    * None yet
