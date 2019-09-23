@@ -18,4 +18,4 @@ for arch in $ARCHES; do
 done
 
 docker manifest create ${REGISTRY}openttd:${OPENTTD_VERSION} $manifests
-docker manifest push ${REGISTRY}openttd:${OPENTTD_VERSION}
+docker manifest push --purge ${REGISTRY}openttd:${OPENTTD_VERSION}
