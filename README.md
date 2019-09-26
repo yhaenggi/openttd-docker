@@ -13,7 +13,7 @@ If you want to build the images yourself, you'll have to adapt the registry file
 
     cp /usr/bin/qemu-{x86_64,arm,aarch64}-static .
 
-In case you want other arches, just add them in the ARCHES files and copy the corresponding qemu user static binary.
+In case you want other arches, just add them in the ARCHES files and copy the corresponding qemu user static binary. If you want support for another archtitecture, open an issue.
 
 On some distros, you have to manually enable binfmt support:
 
