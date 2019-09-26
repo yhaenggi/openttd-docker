@@ -1,6 +1,6 @@
 ARG ARCH
 FROM ${ARCH}/ubuntu:latest
-MAINTAINER Xeha <Xeha@i2pmail.org>
+MAINTAINER yhaenggi <yhaenggi@darkgamex.ch>
 
 ARG ARCH
 ARG OPENTTD_VERSION
