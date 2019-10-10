@@ -9,7 +9,7 @@ for arch in $ARCHES; do
 done
 
 for arch in $ARCHES; do
-	docker push -t ${REGISTRY}openttd-${arch}:${OPENTTD_VERSION}
+	docker push ${REGISTRY}openttd-${arch}:${OPENTTD_VERSION}
 done
 
 manifests=""
