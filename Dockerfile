@@ -1,6 +1,6 @@
 ARG ARCH
 FROM ${ARCH}/ubuntu:latest
-MAINTAINER yhaenggi <yhaenggi@darkgamex.ch>
+MAINTAINER yhaenggi <yhaenggi-git-public@darkgamex.ch>
 
 ARG ARCH
 ARG OPENTTD_VERSION
