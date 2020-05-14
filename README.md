@@ -2,7 +2,7 @@ These images have been built and tested on docker 386, amd64, arm32v7 and arm64v
 
 ## Usage ##
 
-    docker run -d -p 3979:3979/tcp -p 3979:3979/udp yhaenggi/openttd:1.10.0
+    docker run -d -p 3979:3979/tcp -p 3979:3979/udp yhaenggi/openttd:1.10.1
 
 Its set up to not load any games by default (new game) but you can change it with the CMD argument. 
 
@@ -24,5 +24,6 @@ You can verify if it worked with this (should show enabled):
     update-binfmts --display|grep -E "arm|aarch"
 
 ## Tags ##
-   * 1.9.3
+   * 1.10.1
    * 1.10.0
+   * 1.9.3
