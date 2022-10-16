@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 OPENTTD_VERSION="$(cat OPENTTD_VERSION)"
 OPENGFX_VERSION="$(cat OPENGFX_VERSION)"
 ARCHES="$(cat ARCHES)"
